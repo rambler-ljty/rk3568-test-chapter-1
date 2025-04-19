@@ -1,0 +1,1 @@
+cmd_/home/topeet/Linux/work/02/parameter.ko := aarch64-none-linux-gnu-ld -r  -EL  -maarch64elf -T ./scripts/module-common.lds -T ./arch/arm64/kernel/module.lds  --build-id  -o /home/topeet/Linux/work/02/parameter.ko /home/topeet/Linux/work/02/parameter.o /home/topeet/Linux/work/02/parameter.mod.o ;  true
