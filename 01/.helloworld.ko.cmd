@@ -1,0 +1,1 @@
+cmd_/home/topeet/Linux/work/01/helloworld.ko := aarch64-none-linux-gnu-ld -r  -EL  -maarch64elf -T ./scripts/module-common.lds -T ./arch/arm64/kernel/module.lds  --build-id  -o /home/topeet/Linux/work/01/helloworld.ko /home/topeet/Linux/work/01/helloworld.o /home/topeet/Linux/work/01/helloworld.mod.o ;  true

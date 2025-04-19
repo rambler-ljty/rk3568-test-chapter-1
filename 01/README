@@ -1,0 +1,24 @@
+## KEEP BUILD KO FILE
+
+
+
+##1 helloworld.c  build --> helloworld.ko
+
+ * 使用说明：
+ * 1. 编译模块：make
+ * 2. 加载模块：sudo insmod helloworld.ko
+ * 3. 查看消息：dmesg
+ * 4. 卸载模块：sudo rmmod helloworld
+ *
+
+
+##2  Makefile
+
+# 使用说明：
+# 1. 编译模块：make
+# 2. 清理文件：make clean
+#
+# 注意事项：
+# 1. 确保KDIR路径指向正确的内核源码目录
+# 2. 确保已安装正确的交叉编译工具链
+# 3. 确保ARCH变量与目标平台匹配
