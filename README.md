@@ -2,7 +2,7 @@
 
 01  内核模块test
 
--- insmod  rmmod  lsmod
+ * insmod  rmmod  lsmod
 
 02 传参 test
 
@@ -17,4 +17,12 @@
  * para    - 最多8个整数，用逗号分隔
  * str     - 最大长度为10的字符串
 
+03 内核模块符号导出 test
 
+ * 使用步骤：
+ **  有依赖关系，加载和卸载moudle的顺序需要注意
+ * insmod mathmodule.ko
+ * insmod hello.ko
+ ** 测试完毕 先卸载后hello.ko
+ * rmmod hello.ko
+ * rmmod mathmodule.ko

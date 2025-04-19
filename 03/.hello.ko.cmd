@@ -1,0 +1,1 @@
+cmd_/home/topeet/Linux/work/03/hello.ko := aarch64-none-linux-gnu-ld -r  -EL  -maarch64elf -T ./scripts/module-common.lds -T ./arch/arm64/kernel/module.lds  --build-id  -o /home/topeet/Linux/work/03/hello.ko /home/topeet/Linux/work/03/hello.o /home/topeet/Linux/work/03/hello.mod.o ;  true

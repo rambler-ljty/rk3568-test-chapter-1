@@ -1,0 +1,1 @@
+cmd_/home/topeet/Linux/work/03/mathmodule.ko := aarch64-none-linux-gnu-ld -r  -EL  -maarch64elf -T ./scripts/module-common.lds -T ./arch/arm64/kernel/module.lds  --build-id  -o /home/topeet/Linux/work/03/mathmodule.ko /home/topeet/Linux/work/03/mathmodule.o /home/topeet/Linux/work/03/mathmodule.mod.o ;  true
