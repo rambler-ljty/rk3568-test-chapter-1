@@ -1,0 +1,100 @@
+
+### 01 内核模块test
+
+[root@topeet:~/01]#
+[root@topeet:~/01]# insmod helloworld.ko
+[   95.772627] helloworld_init
+[root@topeet:~/01]#
+[root@topeet:~/01]# lsmod
+Module                  Size  Used by    Tainted: P
+helloworld             16384  0
+rtk_btusb              57344  0
+8723du               1560576  0
+bcmdhd               1048576  0
+[root@topeet:~/01]#
+[root@topeet:~/01]# rmmod helloworld.ko
+[  109.404056] helloworld_exit
+[root@topeet:~/01]#
+[root@topeet:~/01]# lsmod
+Module                  Size  Used by    Tainted: P
+rtk_btusb              57344  0
+8723du               1560576  0
+bcmdhd               1048576  0
+[root@topeet:~/01]#
+
+
+### 02 传参 test
+
+[root@topeet:~/02]# insmod parameter.ko number=100 name="mytest" para=0,1,2,3,4,5,6,7 str="hello"
+[  330.049295] 100
+[  330.049361] mytest
+[  330.049370] para[0]:0
+[  330.049377] par[root@topeet:~/a02]# [1]:1
+[  330.049382] para[2]:2
+[  330.049389] para[3]:3
+[  330.049395] para[4]:4
+[  330.049404] para[5]:5
+[  330.049423] para[6]:6
+[  330.049433] para[7]:7
+[  330.049443] hello
+
+[root@topeet:~/02]#
+
+
+### 03 内核模块符号导出 test
+
+[root@topeet:~/03]# ls
+Makefile        hello.c   hello.mod    hello.mod.o  mathmodule.c   mathmodule.mod    mathmodule.mod.o  modules.order
+Module.symvers  hello.ko  hello.mod.c  hello.o      mathmodule.ko  mathmodule.mod.c  mathmodule.o
+[root@topeet:~/03]# 
+[root@topeet:~/03]# lsmod
+Module                  Size  Used by    Tainted: P  
+rtk_btusb              57344  0 
+8723du               1560576  0 
+bcmdhd               1048576  0 
+[root@topeet:~/03]# insmod  mathmodule.ko 
+[  470.521986] math_module init
+[root@topeet:~/03]# insmod  hello.ko 
+[  479.583287] num = 10
+[  479.583349] sum = 7
+[root@topeet:~/03]# 
+[root@topeet:~/03]# lsmod
+Module                  Size  Used by    Tainted: P  
+hello                  16384  0 
+mathmodule             16384  1 hello
+rtk_btusb              57344  0 
+8723du               1560576  0 
+bcmdhd               1048576  0 
+[root@topeet:~/03]# rmmod hello.ko
+[  493.894513] Goodbye hello module
+[root@topeet:~/03]# 
+[root@topeet:~/03]# rmmod mathmodule.ko 
+[  504.980260] math_module exit
+[root@topeet:~/03]# 
+
+
+如果不考虑依赖关系加载，就会出现类似下面错误
+
+[root@topeet:~/03]# insmod hello.ko
+[  554.930248] hello: Unknown symbol add (err -2)
+[  554.930347] hello: Unknown symbol num (err -2)
+[  554.944955] hello: Unknown symbol add (err -2)
+[  554.945063] hello: Unknown symbol num (err -2)
+insmod: can't insert 'hello.ko': unknown symbol in module, or unknown parameter
+[root@topeet:~/03]# 
+[root@topeet:~/03]# insmod mathmodule.ko
+[  582.055842] math_module init
+[root@topeet:~/03]# insmod hello.ko
+[  588.264181] num = 10
+[  588.264265] sum = 7
+[root@topeet:~/03]# 
+[root@topeet:~/03]# rmmod mathmodule.ko
+rmmod: can't unload module 'mathmodule': Resource temporarily unavailable
+[root@topeet:~/03]# 
+[root@topeet:~/03]# rmmod hello.ko
+[  610.256766] Goodbye hello module
+[root@topeet:~/03]# rmmod mathmodule.ko 
+[  615.722684] math_module exit
+[root@topeet:~/03]# 
+
+###
